@@ -27,11 +27,11 @@ const arraysTask = {
     //ф-ция должна вернуть последние n элементов массива
     //если n > array.length то вернуть копию массива
     lastN(array, n) {
-    let arr = [];
-    if( n > array.length){
-       return array.slice();
-     }
-        for(j = 0; j < n; j++ ){
+        let arr = [];
+        for (j = 0; j < n; j++) {
+            if (n > array.length) {
+                return copyArr = array;
+            }
             arr[j] = array[array.length - n + j];
 
         }
@@ -62,45 +62,30 @@ const arraysTask = {
     },
     //эта ф-ция должна работать как array.forEach, но если cb возвращает false то обход цикла должен прикратиться
     breakableForEach(array, cb) {
-        for(i = 0; i < array.length; i++){
-            if(cb(array[i])){
-                console.log(array[i]);
-            }
-            else{
-                break;
+        for(let i = 0; i < array.length; i++){
+            if(cb(array[i]) === false){
+                return;
             }
         }
-        return 'cb приняла значение false';
     },
     //ф-ция должна вернуть true если в обеих массивах одинаковые элементы, иначе false
     //areArraysEqual([1, 2, 3], [2, 3, 1]) => true
     //areArraysEqual([1, 2, 2], [1, 2]) => false
         areArraysEqual(arr1, arr2) {
-            function areArraysEqual(arr1, arr2) {
-                if(arr1.length !== arr2.length){
-                    return false;
-                }   
-                else{
-                    for(i = 0; i < arr1.length; i++){
-                        let numIndex =  arr2.indexOf(arr1[i]);
-                        console.log(numIndex);
-                        if(numIndex !== -1 ){
-                            arr2.splice(numIndex,1);
-                            
-                        }
-                        else{
-                            break;
-                        }
-                    
-                    }
-                    if(arr2.length == 0){
-                        return true;
+            if(arr1.length !== arr2.length){
+                return false;
+            }   
+                for(i = 0; i < arr1.length; i++){
+                    let numIndex =  arr2.indexOf(arr1[i]);
+                       
+                    if(numIndex !== -1 ){
+                        arr2.splice(numIndex,1);                           
                     }
                     else{
-                        return false;
+                        break;
                     }
-                    
-                }     
-            }
+                }
+                return arr2.length == 0;
+        
         }
-};
+    };
