@@ -64,6 +64,7 @@ const loopsTasks = {
         if (checkResult !== random) {
               return false;
         }
+
     },
   
   };
